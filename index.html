@@ -4581,7 +4581,8 @@ your balances, your orders and your trades.</p>
          </span><span class="s2">"&lt;ORD_STATUS&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;ORD_PRICE&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;ORD_PRICE_AVG&gt;"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"&lt;ORD_CREATED_AT&gt;"</span><span class="w">
+         </span><span class="s2">"&lt;ORD_CREATED_AT&gt;"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ORD_HIDDEN"</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="p">[</span><span class="w">
          </span><span class="s2">"..."</span><span class="w">
@@ -4644,6 +4645,11 @@ your balances, your orders and your trades.</p>
 <td>string</td>
 <td>Creation date/time</td>
 </tr>
+<tr>
+<td>ORD_HIDDEN</td>
+<td>int</td>
+<td>1 if Hidden, 0 if not hidden</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -4680,7 +4686,7 @@ your balances, your orders and your trades.</p>
 <tr>
 <td>TRD_ID</td>
 <td>int</td>
-<td>Orade id</td>
+<td>Trade id</td>
 </tr>
 <tr>
 <td>TRD_PAIR</td>
