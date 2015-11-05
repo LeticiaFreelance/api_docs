@@ -4256,7 +4256,7 @@ such as price, size and time.</p>
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="p">[</span><span class="w">  
       </span><span class="p">[</span><span class="w">  
-         </span><span class="s2">"&lt;ID&gt;"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"&lt;SEQ&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;TIMESTAMP&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;PRICE&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;AMOUNT&gt;"</span><span class="w">
@@ -4273,7 +4273,7 @@ such as price, size and time.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"&lt;ID&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;SEQ&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;TIMESTAMP&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;PRICE&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;AMOUNT&gt;"</span><span class="w">
@@ -4294,9 +4294,9 @@ such as price, size and time.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>int</td>
-<td>A Bitfinex trade ID</td>
+<td>SEQ</td>
+<td>string</td>
+<td>Trade sequence id</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
@@ -4364,7 +4364,9 @@ much the price has moved over the last day.</p>
    </span><span class="s2">"&lt;DAILY_CHANGE&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;DAILY_CHANGE_PERC&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;LAST_PRICE&gt;"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"&lt;VOLUME&gt;"</span><span class="w">
+   </span><span class="s2">"&lt;VOLUME&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;HIGH&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;LOW&gt;"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
@@ -4436,6 +4438,16 @@ much the price has moved over the last day.</p>
 <td>VOLUME</td>
 <td>float</td>
 <td>Daily volume</td>
+</tr>
+<tr>
+<td>HIGH</td>
+<td>float</td>
+<td>Daily high</td>
+</tr>
+<tr>
+<td>LOW</td>
+<td>float</td>
+<td>Daily low</td>
 </tr>
 </tbody></table>
 
@@ -4663,7 +4675,8 @@ your balances, your orders and your trades.</p>
          </span><span class="s2">"&lt;ORD_PRICE&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;ORD_PRICE_AVG&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;ORD_CREATED_AT&gt;"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"ORD_HIDDEN"</span><span class="w">
+         </span><span class="s2">"&lt;ORD_NOTIFY&gt;"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"&lt;ORD_HIDDEN&gt;"</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="p">[</span><span class="w">
          </span><span class="s2">"..."</span><span class="w">
@@ -4725,6 +4738,11 @@ your balances, your orders and your trades.</p>
 <td>ORD_CREATED_AT</td>
 <td>string</td>
 <td>Creation date/time</td>
+</tr>
+<tr>
+<td>ORD_NOTIFY</td>
+<td>int</td>
+<td>1 if Notify flag is active, 0 if not</td>
 </tr>
 <tr>
 <td>ORD_HIDDEN</td>
@@ -4867,6 +4885,22 @@ your balances, your orders and your trades.</p>
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"te"</span><span class="p">,</span><span class="w">
    </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"&lt;TRD_SEQ&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;TRD_PAIR&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;TRD_TIMESTAMP&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;TRD_ORD_ID&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;TRD_AMOUNT_EXECUTED&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;TRD_PRICE_EXECUTED&gt;"</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>After a <code class="prettyprint">te</code> message you receive shortly a <code class="prettyprint">tu</code> message that contains the real trade id (<code class="prettyprint">TRD_ID</code>) and additional/updated fields.</p>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"tu"</span><span class="p">,</span><span class="w">
+   </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"&lt;TRD_SEQ&gt;"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"&lt;TRD_ID&gt;"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"&lt;TRD_PAIR&gt;"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"&lt;TRD_TIMESTAMP&gt;"</span><span class="p">,</span><span class="w">
@@ -4928,6 +4962,10 @@ your balances, your orders and your trades.</p>
 <tr>
 <td>te</td>
 <td>trade executed</td>
+</tr>
+<tr>
+<td>tu</td>
+<td>trade execution update</td>
 </tr>
 </tbody></table>
 
