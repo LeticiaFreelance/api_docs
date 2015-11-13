@@ -3874,6 +3874,30 @@ Right after connecting you receive an info message that contains the actual vers
 If you are developing/using a trading bot, please make sure to handle version number changes.
 </aside>
 
+<p>Websocket server sends other <code class="prettyprint">info</code> messages to inform regarding relevant events.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;CODE&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;MSG&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<aside class="warning">
+<strong>info codes</strong>
+<br>
+20051 : Stop/Restart Websocket Server (please try to reconnect)
+<br>
+20060 : Refreshing data from the Trading Engine
+<br>
+20061 : Done Refreshing data from the Trading Engine
+<br>
+</aside>
+
+<aside class="notice">
+<strong>NOTE</strong>
+Rely on <CODE> only to handle `info` events.
+</aside>
+
 <h3 id="ping-pong">Ping/Pong</h3>
 
 <p>Use <code class="prettyprint">ping</code> message to test your connection to the websocket server.</p>
@@ -3978,16 +4002,6 @@ can use to distinguish between updates for each subscribed channel.</li></ul>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
-<p>or</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_NAME&gt;"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"pair"</span><span class="p">:</span><span class="s2">"&lt;PAIR&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -4109,16 +4123,26 @@ followed by updates upon any changes to the book.</p>
 <td>Level of price aggregation (P0, P1, P2, P3). The default is P0.</td>
 </tr>
 <tr>
+<td>PRICE</td>
+<td>float</td>
+<td>Price level.</td>
+</tr>
+<tr>
 <td>COUNT</td>
 <td>int</td>
 <td>Number of orders at that price level.</td>
 </tr>
 <tr>
-<td>AMOUNT</td>
+<td>±AMOUNT</td>
 <td>float</td>
 <td>Total amount available at that price level. Positive values mean bid, negative values mean ask.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+<strong>NOTE</strong>
+COUNT=0 means that you have to remove the price level from your book. 
+</aside>
 
 <p><strong>Precision Levels per Pair</strong></p>
 
@@ -4382,13 +4406,15 @@ much the price has moved over the last day.</p>
    </span><span class="s2">"&lt;DAILY_CHANGE&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;DAILY_CHANGE_PERC&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;LAST_PRICE&gt;"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"&lt;VOLUME&gt;"</span><span class="w">
+   </span><span class="s2">"&lt;VOLUME&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;HIGH&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;LOW&gt;"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
 <p><em>Here is an example of a real ticker</em></p>
 
-<p><code class="prettyprint">[ 2, 236.62, 9.0029, 236.88, 7.1138, -1.02, 0, 236.52, 5191.36754297 ]</code></p>
+<p><code class="prettyprint">[ 2, 236.62, 9.0029, 236.88, 7.1138, -1.02, 0, 236.52, 5191.36754297, 250.01, 220.05 ]</code></p>
 
 <p><strong>Fields</strong></p>
 
