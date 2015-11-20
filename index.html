@@ -3951,6 +3951,13 @@ Rely on <CODE> only to handle `info` events.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="heartbeating">Heartbeating</h3>
+
+<p>If there is no new message in the channel for 5 seconds, Websocket server will send you an heartbeat message in this format.
+<code class="prettyprint">json
+[&quot;&lt;Chan Id&gt;&quot;, &quot;hb&quot;]
+</code></p>
+
 <h3 id="snapshot">Snapshot</h3>
 
 <p>Upon subscribing to a channel an initial snapshot is sent. Typically,
