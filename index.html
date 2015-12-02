@@ -3827,7 +3827,7 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <p>Open up a websocket connection to the websocket URI.</p>
 
 <blockquote>
-<p><strong>Example</strong></p>
+<p><strong>Connection Example</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="c1">//using the ws library</span>
 <span class="kd">var</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ws'</span><span class="p">);</span>
@@ -4052,7 +4052,7 @@ After receiving the response, you will receive a snapshot of the book,
 followed by updates upon any changes to the book.</p>
 
 <blockquote>
-<p><strong>Example</strong></p>
+<p><strong>Order Books Example</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
@@ -4249,10 +4249,10 @@ followed by updates upon any changes to the book.</p>
 COUNT=0 means that you have to remove the price level from your book. 
 </aside>
 
-<h4 id="raw-order-books">Raw Order Books</h4>
+<h3 id="raw-order-books">Raw Order Books</h3>
 
 <blockquote>
-<p><strong>Example</strong></p>
+<p><strong>Raw Order Books Example</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
@@ -4359,7 +4359,7 @@ It includes all the pertinent details of the trade,
 such as price, size and time.</p>
 
 <blockquote>
-<p><strong>Example</strong></p>
+<p><strong>Trades Example</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
@@ -4468,7 +4468,7 @@ price. It also includes information such as daily volume and how
 much the price has moved over the last day.</p>
 
 <blockquote>
-<p><strong>Example</strong></p>
+<p><strong>Ticker Example</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
@@ -4617,7 +4617,7 @@ your balances, your orders and your trades.</p>
 </aside>
 
 <blockquote>
-<p><strong>Example</strong></p>
+<p><strong>Auth Example</strong></p>
 </blockquote>
 <pre class="highlight javascript"><code><span class="kd">var</span>
     <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">),</span>
