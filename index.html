@@ -3887,9 +3887,9 @@ If you are developing/using a trading bot, please make sure to handle version nu
 <br>
 20051 : Stop/Restart Websocket Server (please try to reconnect)
 <br>
-20060 : Refreshing data from the Trading Engine
+20060 : Refreshing data from the Trading Engine. Please pause any activity and resume after receiving the `info` message `20061` (it should take 10 seconds at most).
 <br>
-20061 : Done Refreshing data from the Trading Engine
+20061 : Done Refreshing data from the Trading Engine. You can resume normal activity. It is advised to unsubscribe/subscribe again all channels.
 <br>
 </aside>
 
@@ -4058,7 +4058,8 @@ followed by updates upon any changes to the book.</p>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
     <span class="s2">"channel"</span><span class="p">:</span> <span class="s2">"book"</span><span class="p">,</span>
     <span class="s2">"pair"</span><span class="p">:</span> <span class="s2">"BTCUSD"</span><span class="p">,</span>
-    <span class="s2">"prec"</span><span class="p">:</span> <span class="s2">"P0"</span>
+    <span class="s2">"prec"</span><span class="p">:</span> <span class="s2">"P0"</span><span class="p">,</span>
+    <span class="s2">"len"</span><span class="p">:</span><span class="s2">"&lt;LENGTH&gt;"</span>
 <span class="p">}))</span>
 </code></pre>
 
@@ -4144,12 +4145,120 @@ followed by updates upon any changes to the book.</p>
 <td>float</td>
 <td>Total amount available at that price level. Positive values mean bid, negative values mean ask.</td>
 </tr>
+<tr>
+<td>LENGTH</td>
+<td>string</td>
+<td>Number of price points (&ldquo;25&rdquo;, &ldquo;100&rdquo;) [default=&ldquo;25&rdquo;]</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">
 <strong>NOTE</strong>
 COUNT=0 means that you have to remove the price level from your book. 
 </aside>
+
+<h4 id="raw-order-books">Raw order Books</h4>
+
+<blockquote>
+<p><strong>Example</strong></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
+    <span class="s2">"channel"</span><span class="p">:</span> <span class="s2">"book"</span><span class="p">,</span>
+    <span class="s2">"pair"</span><span class="p">:</span> <span class="s2">"BTCUSD"</span><span class="p">,</span>
+    <span class="s2">"prec"</span><span class="p">:</span> <span class="s2">"R0"</span><span class="p">,</span>
+    <span class="s2">"len"</span><span class="p">:</span><span class="s2">"&lt;LENGTH&gt;"</span>
+<span class="p">}))</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"pair"</span><span class="p">:</span><span class="s2">"&lt;PAIR&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"prec"</span><span class="p">:</span><span class="s2">"R0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p><strong>Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribed"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"chanId"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"pair"</span><span class="p">:</span><span class="s2">"&lt;PAIR&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"prec"</span><span class="p">:</span><span class="s2">"R0"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"len"</span><span class="p">:</span><span class="s2">"&lt;LENGTH&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p><strong>Snapshot</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="p">[</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+         </span><span class="s2">"&lt;ORD_ID&gt;"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"&lt;PRICE&gt;"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"&lt;AMOUNT&gt;"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+         </span><span class="s2">"..."</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p><strong>Updates</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;ORD_ID&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;ORD_PRICE&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;AMOUNT&gt;"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p><strong>Fields</strong></p>
+
+<table><thead>
+<tr>
+<th>Fields</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PRECISION</td>
+<td>string</td>
+<td>Aggregation level (R0).</td>
+</tr>
+<tr>
+<td>ORD_ID</td>
+<td>int</td>
+<td>Order id.</td>
+</tr>
+<tr>
+<td>PRICE</td>
+<td>float</td>
+<td>Price level.</td>
+</tr>
+<tr>
+<td>±AMOUNT</td>
+<td>float</td>
+<td>Total amount available at that price level. Positive values mean bid, negative values mean ask.</td>
+</tr>
+<tr>
+<td>LENGTH</td>
+<td>string</td>
+<td>Number of price points (&ldquo;25&rdquo;</td>
+</tr>
+</tbody></table>
 
 <p><strong>Precision Levels per Pair</strong></p>
 
@@ -4313,7 +4422,7 @@ such as price, size and time.</p>
 
 <p><em>here is an example of a real trade</em></p>
 
-<p><code class="prettyprint">[ 5, 11928301, 1443659698, 236.42, 0.49064538 ]</code></p>
+<p><code class="prettyprint">[ 5, &#39;1234-BTCUSD&#39;, 1443659698, 236.42, 0.49064538 ]</code></p>
 
 <p><strong>Fields</strong></p>
 
@@ -4345,6 +4454,11 @@ such as price, size and time.</p>
 <td>How much was bought (positive) or sold (negative). The order that causes the trade determines if it is a buy or a sell.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+<strong>NOTE</strong>
+SEQ is different from canonical TRADE_ID. Websocket server uses SEQ strings to push trades with low latency. We may add in the future a delayed message to help mapping between SEQ and TRADE_ID.
+</aside>
 
 <h3 id="ticker">Ticker</h3>
 
