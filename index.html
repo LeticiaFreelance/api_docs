@@ -810,7 +810,7 @@ An array of the following:</p>
           </tbody>
           </table>
 
-<h3 id="lends">Lends</h3>
+<h3 id="provided-funding">Provided funding</h3>
 
 <blockquote>
 <p><strong>Request</strong></p>
@@ -820,7 +820,7 @@ An array of the following:</p>
   <span class="s2">"limit_lends"</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">},</span>
 <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">url</span><span class="p">:</span> <span class="nx">url</span> <span class="o">+</span> <span class="s1">'/lends/USD'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="nx">url</span> <span class="o">+</span> <span class="s1">'/provided_funds/USD'</span><span class="p">,</span>
   <span class="na">qs</span><span class="p">:</span> <span class="nx">payload</span>
 <span class="p">};</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
@@ -841,11 +841,11 @@ An array of the following:</p>
 
 <p><strong>Endpoint</strong></p>
 
-<p>/lends/:currency</p>
+<p>/provided_funds/:currency</p>
 
 <p><strong>Description</strong></p>
 
-<p>Get a list of the most recent funding data for the given currency: total amount lent and Flash Return Rate (in % by 365 days) over time.</p>
+<p>Get a list of the most recent funding data for the given currency: total amount provided and Flash Return Rate (in % by 365 days) over time.</p>
 
 <p><strong>Request Details</strong></p>
 
@@ -3120,7 +3120,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"9.8874"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"period"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"34.24603414"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1444280948.0"</span><span class="w">
+  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1444280948.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"auto_close"</span><span class="p">:</span><span class="kc">false</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
@@ -3135,6 +3136,57 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <p><strong>Response Details</strong></p>
 
 <p>An array of your active margin funds.</p>
+
+<h4 id="active-funding-not-used-in-a-margin-position">Active funding not used in a margin position</h4>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/unused_taken_funds"</span><span class="p">,</span>
+  <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
+<span class="p">};</span>
+<span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(</span><span class="s1">'base64'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s2">"sha384"</span><span class="p">,</span> <span class="nx">api_secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s2">"/taken_funds"</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'X-BFX-PAYLOAD'</span><span class="p">:</span> <span class="nx">payload</span><span class="p">,</span>
+    <span class="s1">'X-BFX-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+  <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">payload</span>
+<span class="p">};</span>
+<span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11576737</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"position_id"</span><span class="p">:</span><span class="mi">944309</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"9.8874"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"period"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"34.24603414"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1444280948.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"auto_close"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p><strong>Endpoint</strong></p>
+
+<p><code class="prettyprint">/unused_taken_funds</code></p>
+
+<p><strong>Description</strong></p>
+
+<p>View your funding currently borrowed and not used (available for a new margin position).</p>
+
+<p><strong>Response Details</strong></p>
+
+<p>An array of your active unused margin funds.</p>
 
 <h4 id="total-taken-funds">Total taken funds</h4>
 
@@ -3239,7 +3291,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"9.8874"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"period"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"34.24603414"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1444280948.0"</span><span class="w">
+  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1444280948.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"auto_close"</span><span class="p">:</span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -3249,7 +3302,7 @@ greater or equal to the amount of the position and the margin funding used.</p>
 
 <p><strong>Description</strong></p>
 
-<p>Return the funding taken in a margin position</p>
+<p>Allow you to close an unused or used taken fund</p>
 
 <p><strong>Request Details</strong></p>
 
@@ -3266,7 +3319,7 @@ greater or equal to the amount of the position and the margin funding used.</p>
             <tr>
               <td><strong>swap_id</strong></td>
               <td>[int]</td>
-              <td>The ID given by `/taken_funds`.</td>
+              <td>The ID given by `/taken_funds` or `/unused_taken_funds`.</td>
             </tr>
             </tbody>
             </table>
