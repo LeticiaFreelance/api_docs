@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["javascript","go"]);
+          setupLanguages(["json","javascript","go"]);
         });
       </script>
   </head>
@@ -28,6 +28,7 @@
     <div class="tocify-wrapper">
       <a href='https://bitfinex.com' title="Bitfinex"><img src="images/logo.png" /></a>
         <div class="lang-selector">
+              <a href="#" data-language-name="json">json</a>
               <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="go">go</a>
         </div>
@@ -269,20 +270,14 @@ All Public Endpoints use GET requests
 </aside>
 
 <h3 id="ticker">Ticker</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">"/pubticker/:symbol"</span><span class="p">,</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">"/pubticker/:symbol"</span><span class="p">,</span>
   <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"mid"</span><span class="p">:</span><span class="s2">"244.755"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"bid"</span><span class="p">:</span><span class="s2">"244.75"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"ask"</span><span class="p">:</span><span class="s2">"244.76"</span><span class="p">,</span><span class="w">
@@ -355,20 +350,14 @@ as well as high, low and volume of the last 24 hours.</p>
 </tbody></table>
 
 <h3 id="stats">Stats</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">"/stats/BTCUSD"</span><span class="p">,</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">"/stats/BTCUSD"</span><span class="p">,</span>
   <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"period"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"volume"</span><span class="p">:</span><span class="s2">"7967.96766158"</span><span class="w">
 </span><span class="p">},{</span><span class="w">
@@ -411,11 +400,8 @@ An array of the following:</p>
 </tbody></table>
 
 <h3 id="fundingbook">Fundingbook</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"limit_bids"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="s2">"limit_asks"</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">};</span>
@@ -427,11 +413,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"bids"</span><span class="p">:[{</span><span class="w">
     </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"9.1287"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"5000.0"</span><span class="p">,</span><span class="w">
@@ -563,11 +546,8 @@ An array of the following:</p>
           </table></p>
 
 <h3 id="orderbook">Orderbook</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"limit_bids"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="s2">"limit_asks"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="s2">"group"</span><span class="p">:</span> <span class="mi">0</span>
@@ -580,11 +560,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"bids"</span><span class="p">:[{</span><span class="w">
     </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"9.1287"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"5000.0"</span><span class="p">,</span><span class="w">
@@ -695,11 +672,8 @@ An array of the following:</p>
           </table>
 
 <h3 id="trades">Trades</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"timestamp"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"limit_trades"</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">};</span>
@@ -711,11 +685,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1444266681</span><span class="p">,</span><span class="w">
   </span><span class="nt">"tid"</span><span class="p">:</span><span class="mi">11988919</span><span class="p">,</span><span class="w">
   </span><span class="nt">"price"</span><span class="p">:</span><span class="s2">"244.8"</span><span class="p">,</span><span class="w">
@@ -811,11 +782,8 @@ An array of the following:</p>
           </table>
 
 <h3 id="provided-funding">Provided funding</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"timestamp"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"limit_lends"</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">},</span>
@@ -827,11 +795,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"9.8998"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"amount_lent"</span><span class="p">:</span><span class="s2">"22528933.77950878"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"amount_used"</span><span class="p">:</span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
@@ -915,11 +880,8 @@ An array of the following:</p>
           </table>
 
 <h3 id="symbols">Symbols</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">url</span><span class="p">:</span> <span class="nx">url</span> <span class="o">+</span> <span class="s1">'/symbols'</span><span class="p">,</span>
   <span class="na">qs</span><span class="p">:</span> <span class="p">{}</span>
 <span class="p">};</span>
@@ -927,11 +889,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="s2">"ltcusd"</span><span class="p">,</span><span class="s2">"ltcbtc"</span><span class="p">]</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="s2">"ltcusd"</span><span class="p">,</span><span class="s2">"ltcbtc"</span><span class="p">]</span><span class="w">
 </span></code></pre>
 
 <p><strong>Endpoint</strong></p>
@@ -947,11 +906,8 @@ An array of the following:</p>
 <p>A list of symbol names. Currently &ldquo;btcusd&rdquo;, &ldquo;ltcusd&rdquo;, &ldquo;ltcbtc&rdquo;</p>
 
 <h3 id="symbol-details">Symbol Details</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">url</span><span class="p">:</span> <span class="nx">url</span> <span class="o">+</span> <span class="s1">'/symbols_details'</span><span class="p">,</span>
   <span class="na">qs</span><span class="p">:</span> <span class="p">{}</span>
 <span class="p">};</span>
@@ -959,11 +915,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">reponse</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"pair"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"price_precision"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="nt">"initial_margin"</span><span class="p">:</span><span class="s2">"30.0"</span><span class="p">,</span><span class="w">
@@ -1066,11 +1019,8 @@ All Authenticated Endpoints use POST requests
 </aside>
 
 <h3 id="account-info">Account info</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/account_infos"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span>
 <span class="p">};</span>
@@ -1088,11 +1038,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"maker_fees"</span><span class="p">:</span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"taker_fees"</span><span class="p">:</span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fees"</span><span class="p">:[{</span><span class="w">
@@ -1152,11 +1099,8 @@ All Authenticated Endpoints use POST requests
           </table>
 
 <h3 id="deposit">Deposit</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/deposit/new"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"bitcoin"</span><span class="p">,</span>
@@ -1177,11 +1121,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"result"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"method"</span><span class="p">:</span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
@@ -1267,11 +1208,8 @@ All Authenticated Endpoints use POST requests
 <h3 id="orders">Orders</h3>
 
 <h4 id="new-order">New Order</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/order/new"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"symbol"</span><span class="p">:</span> <span class="s2">"BTCUSD"</span><span class="p">,</span>
@@ -1295,11 +1233,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">448364249</span><span class="p">,</span><span class="w">
   </span><span class="nt">"symbol"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"exchange"</span><span class="p">:</span><span class="s2">"bitfinex"</span><span class="p">,</span><span class="w">
@@ -1436,11 +1371,8 @@ All Authenticated Endpoints use POST requests
             </table>
 
 <h4 id="multiple-new-orders">Multiple new orders</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/order/new/multi"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"orders"</span><span class="p">:</span> <span class="p">[{</span>
@@ -1474,11 +1406,8 @@ All Authenticated Endpoints use POST requests
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"order_ids"</span><span class="p">:[{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">448383727</span><span class="p">,</span><span class="w">
     </span><span class="nt">"symbol"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
@@ -1591,11 +1520,8 @@ All Authenticated Endpoints use POST requests
             </table>
 
 <h4 id="cancel-order">Cancel order</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/order/cancel"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">448364249</span>
@@ -1614,11 +1540,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">446915287</span><span class="p">,</span><span class="w">
   </span><span class="nt">"symbol"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"exchange"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1670,11 +1593,8 @@ All Authenticated Endpoints use POST requests
 <p>Result of /order/status for the cancelled order.</p>
 
 <h4 id="cancel-multiple-orders">Cancel multiple orders</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/order/cancel/multi"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"order_ids"</span><span class="p">:</span> <span class="p">[</span><span class="mi">448402101</span><span class="p">,</span> <span class="mi">448402099</span><span class="p">]</span>
@@ -1693,11 +1613,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="nt">"result"</span><span class="p">:</span><span class="s2">"Orders cancelled"</span><span class="p">}</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="nt">"result"</span><span class="p">:</span><span class="s2">"Orders cancelled"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p><strong>Endpoint</strong></p>
@@ -1733,11 +1650,8 @@ All Authenticated Endpoints use POST requests
 <p>Confirmation of cancellation of the orders.</p>
 
 <h4 id="cancel-all-orders">Cancel all orders</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/order/cancel/all"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span>
 <span class="p">};</span>
@@ -1755,11 +1669,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="nt">"result"</span><span class="p">:</span><span class="s2">"All orders cancelled"</span><span class="p">}</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="nt">"result"</span><span class="p">:</span><span class="s2">"All orders cancelled"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p><strong>Endpoint</strong></p>
@@ -1779,11 +1690,8 @@ All Authenticated Endpoints use POST requests
 <p>Confirmation of cancellation of the orders.</p>
 
 <h4 id="replace-order">Replace order</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">448411153</span><span class="p">,</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/order/cancel/replace"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
@@ -1808,11 +1716,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">448411365</span><span class="p">,</span><span class="w">
   </span><span class="nt">"symbol"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"exchange"</span><span class="p">:</span><span class="s2">"bitfinex"</span><span class="p">,</span><span class="w">
@@ -1916,11 +1821,8 @@ All Authenticated Endpoints use POST requests
             </table>
 
 <h4 id="order-status">Order status</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">448411153</span><span class="p">,</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/order/status"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span>
@@ -1939,11 +1841,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">448411153</span><span class="p">,</span><span class="w">
   </span><span class="nt">"symbol"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"exchange"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -2077,11 +1976,8 @@ All Authenticated Endpoints use POST requests
             </table>
 
 <h4 id="active-orders">Active orders</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/orders"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span>
 <span class="p">};</span>
@@ -2099,11 +1995,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">448411365</span><span class="p">,</span><span class="w">
   </span><span class="nt">"symbol"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"exchange"</span><span class="p">:</span><span class="s2">"bitfinex"</span><span class="p">,</span><span class="w">
@@ -2137,11 +2030,8 @@ All Authenticated Endpoints use POST requests
 <h3 id="positions">Positions</h3>
 
 <h4 id="active-positions">Active Positions</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/positions"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span>
 <span class="p">};</span>
@@ -2159,11 +2049,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">943715</span><span class="p">,</span><span class="w">
   </span><span class="nt">"symbol"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
@@ -2188,11 +2075,8 @@ All Authenticated Endpoints use POST requests
 <p>An array of your active positions.</p>
 
 <h4 id="claim-position">Claim position</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/position/claim"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"position_id"</span><span class="p">:</span> <span class="mi">943715</span>
@@ -2211,11 +2095,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">943715</span><span class="p">,</span><span class="w">
   </span><span class="nt">"symbol"</span><span class="p">:</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
@@ -2271,11 +2152,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <h3 id="historical-data">Historical Data</h3>
 
 <h4 id="balance-history">Balance History</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/history"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
@@ -2295,11 +2173,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"-246.94"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"balance"</span><span class="p">:</span><span class="s2">"515.4476526"</span><span class="p">,</span><span class="w">
@@ -2398,11 +2273,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
           </table>
 
 <h4 id="deposit-withdrawal-history">Deposit-Withdrawal History</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/history/movements"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"BTC"</span><span class="p">,</span>
@@ -2422,11 +2294,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">581183</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"method"</span><span class="p">:</span><span class="s2">"BITCOIN"</span><span class="p">,</span><span class="w">
@@ -2540,11 +2409,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
           </table>
 
 <h4 id="past-trades">Past Trades</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/mytrades"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"symbol"</span><span class="p">:</span> <span class="s2">"BTCUSD"</span><span class="p">,</span>
@@ -2568,7 +2434,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <blockquote>
 <p><strong>Response</strong></p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"price"</span><span class="p">:</span><span class="s2">"246.94"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1444141857.0"</span><span class="p">,</span><span class="w">
@@ -2700,11 +2567,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <h3 id="margin-funding">Margin Funding</h3>
 
 <h4 id="new-offer">New Offer</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/offer/new"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
@@ -2727,11 +2591,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13800585</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
@@ -2816,11 +2677,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
             </table>
 
 <h4 id="cancel-offer">Cancel Offer</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/offer/cancel"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"offer_id"</span><span class="p">:</span> <span class="mi">13800585</span>
@@ -2839,11 +2697,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13800585</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
@@ -2891,11 +2746,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <p>Result of /offer/status for the cancelled offer.</p>
 
 <h4 id="offer-status">Offer Status</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/offer/status"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"offer_id"</span><span class="p">:</span> <span class="mi">13800585</span>
@@ -2914,11 +2766,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13800585</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
@@ -3033,11 +2882,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
             </table>
 
 <h4 id="active-credits">Active Credits</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/offers"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
 <span class="p">};</span>
@@ -3055,11 +2901,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13800719</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"31.39"</span><span class="p">,</span><span class="w">
@@ -3087,11 +2930,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <p>An array of the results of <code class="prettyprint">/offer/status</code> for all your live offers (lending or borrowing).</p>
 
 <h4 id="active-funding-used-in-a-margin-position">Active funding used in a margin position</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/taken_funds"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
 <span class="p">};</span>
@@ -3109,11 +2949,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11576737</span><span class="p">,</span><span class="w">
   </span><span class="nt">"position_id"</span><span class="p">:</span><span class="mi">944309</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
@@ -3138,11 +2975,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <p>An array of your active margin funds.</p>
 
 <h4 id="active-funding-not-used-in-a-margin-position">Active funding not used in a margin position</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/unused_taken_funds"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
 <span class="p">};</span>
@@ -3160,11 +2994,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11576737</span><span class="p">,</span><span class="w">
   </span><span class="nt">"position_id"</span><span class="p">:</span><span class="mi">944309</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
@@ -3189,11 +3020,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <p>An array of your active unused margin funds.</p>
 
 <h4 id="total-taken-funds">Total taken funds</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/total_taken_funds"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
 <span class="p">};</span>
@@ -3211,11 +3039,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"position_pair"</span><span class="p">:</span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"total_swaps"</span><span class="p">:</span><span class="s2">"34.24603414"</span><span class="w">
 </span><span class="p">}]</span><span class="w">
@@ -3255,11 +3080,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
             </table>
 
 <h4 id="close-margin-funding">Close margin funding</h4>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/funding/close"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"swap_id"</span><span class="p">:</span> <span class="mi">11576737</span>
@@ -3278,11 +3100,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11576737</span><span class="p">,</span><span class="w">
   </span><span class="nt">"position_id"</span><span class="p">:</span><span class="mi">944309</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
@@ -3327,11 +3146,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <p>Status of the margin funding contract. Closed if it could be closed.</p>
 
 <h3 id="wallet-balances">Wallet Balances</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/balances"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span>
 <span class="p">};</span>
@@ -3349,11 +3165,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"deposit"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
@@ -3432,11 +3245,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
           </table>
 
 <h3 id="margin-information">Margin Information</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/margin_infos"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span>
 <span class="p">};</span>
@@ -3454,11 +3264,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"margin_balance"</span><span class="p">:</span><span class="s2">"14.80039951"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"tradable_balance"</span><span class="p">:</span><span class="s2">"-12.50620089"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"unrealized_pl"</span><span class="p">:</span><span class="s2">"-0.18392"</span><span class="p">,</span><span class="w">
@@ -3552,11 +3359,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
           </table>
 
 <h3 id="transfer-between-wallets">Transfer Between Wallets</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/transfer"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"1.0"</span><span class="p">,</span>
@@ -3578,11 +3382,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"1.0 USD transfered from Exchange to Deposit"</span><span class="w">
 </span><span class="p">}]</span><span class="w">
@@ -3657,11 +3458,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
           </table>
 
 <h3 id="withdrawal">Withdrawal</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="c1">// request</span>
+<span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/withdraw"</span><span class="p">,</span>
   <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">(),</span>
   <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"0.01"</span><span class="p">,</span>
@@ -3683,11 +3481,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">[{</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Your withdrawal request has been successfully submitted."</span><span class="p">,</span><span class="w">
   </span><span class="nt">"withdrawal_id"</span><span class="p">:</span><span class="mi">586829</span><span class="w">
@@ -3876,10 +3671,6 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <h3 id="how-to-connect">How to Connect</h3>
 
 <p>Open up a websocket connection to the websocket URI.</p>
-
-<blockquote>
-<p><strong>Connection Example</strong></p>
-</blockquote>
 <pre class="highlight javascript"><code><span class="c1">//using the ws library</span>
 <span class="kd">var</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ws'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s2">"wss://api2.bitfinex.com:3000/ws"</span><span class="p">);</span>
@@ -3910,9 +3701,6 @@ greater or equal to the amount of the position and the margin funding used.</p>
 </aside>
 
 <h3 id="info-messages">Info Messages</h3>
-
-<p>Info messages are sent from the websocket server to notify the state of your connection.
-Right after connecting you receive an info message that contains the actual version of the websocket stream.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"info"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20000</span><span class="p">,</span><span class="w">
@@ -3920,18 +3708,21 @@ Right after connecting you receive an info message that contains the actual vers
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>Info messages are sent from the websocket server to notify the state of your connection.
+Right after connecting you receive an info message that contains the actual version of the websocket stream.</p>
+
 <aside class="notice">
 <strong>NOTE</strong>
 If you are developing/using a trading bot, please make sure to handle version number changes.
 </aside>
-
-<p>Websocket server sends other <code class="prettyprint">info</code> messages to inform regarding relevant events.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"info"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;CODE&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;MSG&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p>Websocket server sends other <code class="prettyprint">info</code> messages to inform regarding relevant events.</p>
 
 <aside class="warning">
 <strong>info codes</strong>
@@ -3946,75 +3737,54 @@ If you are developing/using a trading bot, please make sure to handle version nu
 
 <aside class="notice">
 <strong>NOTE</strong>
-Rely on <CODE> only to handle `info` events.
+Rely on `CODE` only to handle `info` events.
 </aside>
 
 <h3 id="ping-pong">Ping/Pong</h3>
-
-<p>Use <code class="prettyprint">ping</code> message to test your connection to the websocket server.</p>
-
-<blockquote>
-<p><strong>#Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"ping"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"pong"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>Use <code class="prettyprint">ping</code> message to test your connection to the websocket server.</p>
+
 <h3 id="subscribe-to-channels">Subscribe to Channels</h3>
-
-<p>To receive data from a channel you have to send a &ldquo;subscribe&rdquo; message first.</p>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"CHANNEL_NAME"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response - Success</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribed"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"CHANNEL_NAME"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response - Failure</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response-failure</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"msg"</span><span class="p">:</span><span class="s2">"&lt;ERROR_MSG&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"&lt;ERROR_CODE&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="heartbeating">Heartbeating</h3>
+<p>To receive data from a channel you have to send a &ldquo;subscribe&rdquo; message first.</p>
 
-<p>If there is no new message in the channel for 5 seconds, Websocket server will send you an heartbeat message in this format.
-<code class="prettyprint">json
-[&quot;&lt;Chan Id&gt;&quot;, &quot;hb&quot;]
-</code></p>
+<h3 id="heartbeating">Heartbeating</h3>
+<pre class="highlight json"><code><span class="p">[</span><span class="s2">"&lt;Chan Id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hb"</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>If there is no new message in the channel for 5 seconds, Websocket server will send you an heartbeat message in this format.</p>
 
 <h3 id="snapshot">Snapshot</h3>
-
-<p>Upon subscribing to a channel an initial snapshot is sent. Typically,
-the snapshot will have as its first item, the chanId, its second item
-will be an array of update messages (each of which is itself an array).
-So The array would have 3 levels.</p>
 
 <blockquote>
 <p><strong>Snapshot</strong></p>
@@ -4026,21 +3796,25 @@ So The array would have 3 levels.</p>
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
+<p>Upon subscribing to a channel an initial snapshot is sent. Typically,
+the snapshot will have as its first item, the chanId, its second item
+will be an array of update messages (each of which is itself an array).
+So The array would have 3 levels.</p>
+
 <h3 id="update">Update</h3>
 
 <p>After receiving the snapshot, you will receive updates upon any change.</p>
 
 <aside class="notice">
-Channel ID&rsquo;s allow you to keep track of the messages, they are static
-per session, you will receive both the CHANNEL_NAME and the chanId
-in the response to a subscription message.
-<ul><li>CHANNEL_NAME: (string) channel name (book, trades, ticker)</li>
-<li>chanId/CHANNEL_ID: (int) channel identifier. chanId is a numeric channel identifier that the developer
-can use to distinguish between updates for each subscribed channel.</li></ul>
+Channel ID&rsquo;s allow you to keep track of the messages, they are static per session, you will receive both the CHANNEL_NAME and the CHANNEL_ID in the response to a subscription message.
+<ul>
+<li>CHANNEL_NAME: (string) channel name (book, trades, ticker)</li>
+<li>CHANNEL_ID: (int) channel identifier. CHANNEL_ID is a numeric channel identifier that the developer can use to distinguish between updates for each subscribed channel.</li>
+</ul>
 </aside>
 
 <aside class="warning">
-<strong>error codes</strong>
+<strong>Error Codes</strong>
 <br>
 10300 : Subscription failed (generic)
 <br>
@@ -4051,40 +3825,31 @@ can use to distinguish between updates for each subscribed channel.</li></ul>
 </aside>
 
 <h3 id="unsubscribe-to-channels">Unsubscribe to Channels</h3>
-
-<p>To stop receiving data from a channel you have to send a &ldquo;unsubscribe&rdquo; message.</p>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response - Success</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"unsubscribed"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response - Failure</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response-failure</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"msg"</span><span class="p">:</span><span class="s2">"&lt;ERROR_MSG&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"&lt;ERROR_CODE&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>To stop receiving data from a channel you have to send a &ldquo;unsubscribe&rdquo; message.</p>
+
 <aside class="warning">
-<strong>error codes</strong>
+<strong>Error Codes</strong>
 <br>
 10400 : Subscription failed (generic)
 <br>
@@ -4093,18 +3858,7 @@ can use to distinguish between updates for each subscribed channel.</li></ul>
 
 <h2 id="public-channels">Public Channels</h2>
 
-<hr>
-
 <h3 id="order-books">Order Books</h3>
-
-<p>The Order Books channel allow you to keep track of the state of the Bitfinex order book.
-It is provided on a price aggregated basis, with customizable precision.
-After receiving the response, you will receive a snapshot of the book,
-followed by updates upon any changes to the book.</p>
-
-<blockquote>
-<p><strong>Order Books Example</strong></p>
-</blockquote>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
     <span class="s2">"channel"</span><span class="p">:</span> <span class="s2">"book"</span><span class="p">,</span>
@@ -4113,22 +3867,16 @@ followed by updates upon any changes to the book.</p>
     <span class="s2">"len"</span><span class="p">:</span><span class="s2">"&lt;LENGTH&gt;"</span>
 <span class="p">}))</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"book"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"pair"</span><span class="p">:</span><span class="s2">"&lt;PAIR&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"prec"</span><span class="p">:</span><span class="s2">"&lt;PRECISION&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribed"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"book"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
@@ -4138,10 +3886,12 @@ followed by updates upon any changes to the book.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<blockquote>
-<p><strong>Snapshot</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+<p>The Order Books channel allow you to keep track of the state of the Bitfinex order book.
+It is provided on a price aggregated basis, with customizable precision.
+After receiving the response, you will receive a snapshot of the book,
+followed by updates upon any changes to the book.</p>
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">snapshot</span><span class="w">
+</span><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="p">[</span><span class="w">
       </span><span class="p">[</span><span class="w">
@@ -4154,12 +3904,9 @@ followed by updates upon any changes to the book.</p>
       </span><span class="p">]</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Updates</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">updates</span><span class="w">
+</span><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;PRICE&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;COUNT&gt;"</span><span class="p">,</span><span class="w">
@@ -4179,7 +3926,7 @@ followed by updates upon any changes to the book.</p>
 <tr>
 <td>PRECISION</td>
 <td>string</td>
-<td>Level of price aggregation (P0, P1, P2, P3). The default is P0.</td>
+<td>Level of price aggregation (P0, P1, P2, P3).<br>The default is P0.</td>
 </tr>
 <tr>
 <td>PRICE</td>
@@ -4194,7 +3941,7 @@ followed by updates upon any changes to the book.</p>
 <tr>
 <td>±AMOUNT</td>
 <td>float</td>
-<td>Total amount available at that price level. Positive values mean bid, negative values mean ask.</td>
+<td>Total amount available at that price level.<br>Positive values mean bid, negative values mean ask.</td>
 </tr>
 <tr>
 <td>LENGTH</td>
@@ -4288,7 +4035,7 @@ followed by updates upon any changes to the book.</p>
 </tbody></table>
 
 <aside class="warning">
-<strong>error codes</strong>
+<strong>Error Codes</strong>
 <br>
 10011 : Unknown Book precision
 <br>
@@ -4301,10 +4048,6 @@ COUNT=0 means that you have to remove the price level from your book.
 </aside>
 
 <h3 id="raw-order-books">Raw Order Books</h3>
-
-<blockquote>
-<p><strong>Raw Order Books Example</strong></p>
-</blockquote>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
     <span class="s2">"channel"</span><span class="p">:</span> <span class="s2">"book"</span><span class="p">,</span>
@@ -4313,22 +4056,16 @@ COUNT=0 means that you have to remove the price level from your book.
     <span class="s2">"len"</span><span class="p">:</span><span class="s2">"&lt;LENGTH&gt;"</span>
 <span class="p">}))</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"book"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"pair"</span><span class="p">:</span><span class="s2">"&lt;PAIR&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"prec"</span><span class="p">:</span><span class="s2">"R0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribed"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"book"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
@@ -4336,12 +4073,9 @@ COUNT=0 means that you have to remove the price level from your book.
    </span><span class="nt">"prec"</span><span class="p">:</span><span class="s2">"R0"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"len"</span><span class="p">:</span><span class="s2">"&lt;LENGTH&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Snapshot</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">snapshot</span><span class="w">
+</span><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="p">[</span><span class="w">
       </span><span class="p">[</span><span class="w">
@@ -4354,12 +4088,9 @@ COUNT=0 means that you have to remove the price level from your book.
       </span><span class="p">]</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Updates</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">updates</span><span class="w">
+</span><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;ORD_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;ORD_PRICE&gt;"</span><span class="p">,</span><span class="w">
@@ -4394,7 +4125,7 @@ COUNT=0 means that you have to remove the price level from your book.
 <tr>
 <td>±AMOUNT</td>
 <td>float</td>
-<td>Total amount available at that price level. Positive values mean bid, negative values mean ask.</td>
+<td>Total amount available at that price level.<br>Positive values mean bid, negative values mean ask.</td>
 </tr>
 <tr>
 <td>LENGTH</td>
@@ -4408,42 +4139,29 @@ COUNT=0 means that you have to remove the price level from your book.
 <p>This channel sends a trade message whenever a trade occurs at Bitfinex.
 It includes all the pertinent details of the trade,
 such as price, size and time.</p>
-
-<blockquote>
-<p><strong>Trades Example</strong></p>
-</blockquote>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
     <span class="s2">"channel"</span><span class="p">:</span> <span class="s2">"trades"</span><span class="p">,</span>
     <span class="s2">"pair"</span><span class="p">:</span> <span class="s2">"BTCUSD"</span>
 <span class="p">}))</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribed"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"chanId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"pair"</span><span class="p">:</span><span class="s2">"&lt;PAIR&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Snapshot</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">  
+</span><span class="err">//</span><span class="w"> </span><span class="err">snapshot</span><span class="w">
+</span><span class="p">[</span><span class="w">  
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="p">[</span><span class="w">  
       </span><span class="p">[</span><span class="w">  
@@ -4457,12 +4175,9 @@ such as price, size and time.</p>
       </span><span class="p">]</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Updates</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">updates</span><span class="w">
+</span><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;SEQ&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;TIMESTAMP&gt;"</span><span class="p">,</span><span class="w">
@@ -4502,7 +4217,7 @@ such as price, size and time.</p>
 <tr>
 <td>AMOUNT</td>
 <td>float</td>
-<td>How much was bought (positive) or sold (negative). The order that causes the trade determines if it is a buy or a sell.</td>
+<td>How much was bought (positive) or sold (negative).<br>The order that causes the trade determines if it is a buy or a sell.</td>
 </tr>
 </tbody></table>
 
@@ -4517,41 +4232,28 @@ SEQ is different from canonical TRADE_ID. Websocket server uses SEQ strings to p
 It shows you the current best bid and ask, as well as the last trade
 price. It also includes information such as daily volume and how
 much the price has moved over the last day.</p>
-
-<blockquote>
-<p><strong>Ticker Example</strong></p>
-</blockquote>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
     <span class="s2">"channel"</span><span class="p">:</span> <span class="s2">"ticker"</span><span class="p">,</span>
     <span class="s2">"pair"</span><span class="p">:</span> <span class="s2">"BTCUSD"</span>
 <span class="p">}))</span>
 </code></pre>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"ticker"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"pair"</span><span class="p">:</span><span class="s2">"BTCUSD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"subscribed"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"channel"</span><span class="p">:</span><span class="s2">"ticker"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Snapshot</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">snapshot</span><span class="w">
+</span><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;BID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;BID_SIZE&gt;"</span><span class="p">,</span><span class="w">
@@ -4564,12 +4266,9 @@ much the price has moved over the last day.</p>
    </span><span class="s2">"&lt;HIGH&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;LOW&gt;"</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Updates</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">updates</span><span class="w">
+</span><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;BID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;BID_SIZE&gt;"</span><span class="p">,</span><span class="w">
@@ -4620,12 +4319,12 @@ much the price has moved over the last day.</p>
 <tr>
 <td>DAILY_CHANGE</td>
 <td>float</td>
-<td>Amount that the last price has changed since yesterday</td>
+<td>Amount that the last price<br>has changed since yesterday</td>
 </tr>
 <tr>
 <td>DAILY_CHANGE_PERC</td>
 <td>float</td>
-<td>Amount that the price has changed expressed in percentage terms</td>
+<td>Amount that the price<br>has changed expressed in percentage terms</td>
 </tr>
 <tr>
 <td>LAST_PRICE</td>
@@ -4651,25 +4350,7 @@ much the price has moved over the last day.</p>
 
 <h2 id="authenticated-channels">Authenticated Channels</h2>
 
-<hr>
-
 <h3 id="account-info">Account Info</h3>
-
-<p>This channel allows you to keep up to date with the status of
-your account. You can receive updates on your positions,
-your balances, your orders and your trades.</p>
-
-<p>Account info always uses chanId 0.</p>
-
-<aside class="notice">
-<strong>AUTH request message: authenticate for the private data stream</strong>
-<ul><li>API_KEY: (string) Bitfinex&rsquo;s api key</li>
-<li>AUTH_SIGNATURE: (string) HMAC-sha384 signature</li></ul>
-</aside>
-
-<blockquote>
-<p><strong>Auth Example</strong></p>
-</blockquote>
 <pre class="highlight javascript"><code><span class="kd">var</span>
     <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">),</span>
     <span class="nx">api_key</span> <span class="o">=</span> <span class="s1">'API_KEY'</span><span class="p">,</span>
@@ -4716,33 +4397,24 @@ your balances, your orders and your trades.</p>
         </span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="x">
     </span><span class="p">}</span><span class="x">
 </span></code></pre>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">  
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="nt">"userId"</span><span class="p">:</span><span class="s2">"&lt;USER_ID&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response - Success</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">  
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="nt">"userId"</span><span class="p">:</span><span class="s2">"&lt;USER_ID&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response - Failure</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+</span><span class="err">//</span><span class="w"> </span><span class="err">response-failure</span><span class="w">
+</span><span class="p">{</span><span class="w">  
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"auth"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"FAIL"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -4750,9 +4422,21 @@ your balances, your orders and your trades.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<blockquote>
-<p><strong>Position Snapshot</strong></p>
-</blockquote>
+<p>This channel allows you to keep up to date with the status of
+your account. You can receive updates on your positions,
+your balances, your orders and your trades.</p>
+
+<p>Account info always uses chanId 0.</p>
+
+<aside class="notice">
+<strong>AUTH request message: authenticate for the private data stream</strong>
+<ul><li>API_KEY: (string) Bitfinex&rsquo;s api key</li>
+<li>AUTH_SIGNATURE: (string) HMAC-sha384 signature</li></ul>
+</aside>
+
+<h4 id="position-snapshot">Position Snapshot</h4>
+
+<p><strong>Fields</strong></p>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">  
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"ps"</span><span class="p">,</span><span class="w">
@@ -4771,8 +4455,6 @@ your balances, your orders and your trades.</p>
    </span><span class="p">]</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-
-<p><strong>Fields</strong></p>
 
 <table><thead>
 <tr>
@@ -4794,7 +4476,7 @@ your balances, your orders and your trades.</p>
 <tr>
 <td>±POS_AMOUNT</td>
 <td>float</td>
-<td>Size of the position. Positive values means a long position, negative values means a short position.</td>
+<td>Size of the position.<br>Positive values means a long position,<br>negative values means a short position.</td>
 </tr>
 <tr>
 <td>POS_BASE_PRICE</td>
@@ -4813,9 +4495,7 @@ your balances, your orders and your trades.</p>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p><strong>Wallet Snapshot</strong></p>
-</blockquote>
+<h4 id="wallet-snapshot">Wallet Snapshot</h4>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"ws"</span><span class="p">,</span><span class="w">
@@ -4828,6 +4508,7 @@ your balances, your orders and your trades.</p>
       </span><span class="p">]</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">]</span><span class="w">
+
 </span></code></pre>
 
 <p><strong>Fields</strong></p>
@@ -4856,9 +4537,7 @@ your balances, your orders and your trades.</p>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p><strong>Order Snapshot</strong></p>
-</blockquote>
+<h4 id="order-snapshot">Order Snapshot</h4>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"os"</span><span class="p">,</span><span class="w">
@@ -4915,7 +4594,7 @@ your balances, your orders and your trades.</p>
 <tr>
 <td>ORD_TYPE</td>
 <td>string</td>
-<td>The type of the order (LIMIT, STOP, TRAILING STOP, &hellip;).</td>
+<td>The type of the order<br>(LIMIT, STOP, TRAILING STOP, &hellip;).</td>
 </tr>
 <tr>
 <td>ORD_STATUS</td>
@@ -4949,9 +4628,7 @@ your balances, your orders and your trades.</p>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p><strong>Trade Snapshot</strong></p>
-</blockquote>
+<h4 id="trade-snapshot">Trade Snapshot</h4>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"ts"</span><span class="p">,</span><span class="w">
@@ -5036,9 +4713,7 @@ your balances, your orders and your trades.</p>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p><strong>Updates (order)</strong></p>
-</blockquote>
+<h4 id="order-updates">Order Updates</h4>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;on|ou|oc&gt;"</span><span class="p">,</span><span class="w">
@@ -5058,9 +4733,7 @@ your balances, your orders and your trades.</p>
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<blockquote>
-<p><strong>Updates (position)</strong></p>
-</blockquote>
+<h4 id="position-updates">Position Updates</h4>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">  
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;pn|pu|pc&gt;"</span><span class="p">,</span><span class="w">
@@ -5075,9 +4748,7 @@ your balances, your orders and your trades.</p>
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<blockquote>
-<p><strong>Updates (wallet)</strong></p>
-</blockquote>
+<h4 id="wallet-updates">Wallet Updates</h4>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"wu"</span><span class="p">,</span><span class="w">
@@ -5100,9 +4771,7 @@ your balances, your orders and your trades.</p>
 </ul>
 </aside>
 
-<blockquote>
-<p><strong>Updates (trade_executed)</strong></p>
-</blockquote>
+<h4 id="executed-trades">Executed Trades</h4>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"te"</span><span class="p">,</span><span class="w">
@@ -5198,7 +4867,7 @@ your balances, your orders and your trades.</p>
 </tbody></table>
 
 <aside class="warning">
-<strong>error codes</strong>
+<strong>Error Codes</strong>
 <br>
 10100 : Authentication failure (generic)
 <br>
@@ -5212,29 +4881,20 @@ your balances, your orders and your trades.</p>
 </aside>
 
 <h3 id="unauthentication">Unauthentication</h3>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">request</span><span class="w">
+</span><span class="p">{</span><span class="w">  
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"unauth"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response - Success</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+</span><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">  
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"unauth"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<blockquote>
-<p><strong>Response - Failure</strong></p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">response-failure</span><span class="w">
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"FAILED"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"chanId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -5243,7 +4903,7 @@ your balances, your orders and your trades.</p>
 </span></code></pre>
 
 <aside class="warning">
-<strong>error codes</strong>
+<strong>Error Codes</strong>
 <br>
 10201 : Not authenticated
 </aside>
@@ -5251,6 +4911,7 @@ your balances, your orders and your trades.</p>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
+                <a href="#" data-language-name="json">json</a>
                 <a href="#" data-language-name="javascript">javascript</a>
                 <a href="#" data-language-name="go">go</a>
           </div>
