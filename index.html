@@ -1017,7 +1017,7 @@ An array of the following:</p>
 All Authenticated Endpoints use POST requests
 </aside>
 
-<h3 id="account-info">Account info</h3>
+<h3 id="account-info">Account Info</h3>
 <pre class="highlight javascript"><code><span class="c1">// request</span>
 <span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/account_infos"</span><span class="p">,</span>
@@ -1312,6 +1312,16 @@ All Authenticated Endpoints use POST requests
               <td><strong>is_postonly</strong></td>
               <td>[bool]</td>
               <td>true if the order should be post only. Default is false. Only relevant for limit orders.</td>
+            </tr>
+            <tr>
+              <td><strong>ocoorder</strong></td>
+              <td>[bool]</td>
+              <td>Set an additional STOP OCO order that will be linked with the current order.</td>
+            </tr>
+            <tr>
+              <td><strong>buy_price_oco</strong></td>
+              <td>[price]</td>
+              <td>If ocoorder is true, this field represent the price of the OCO stop order to place</td>
             </tr>
             </tbody>
             </table>
@@ -1853,6 +1863,7 @@ All Authenticated Endpoints use POST requests
   </span><span class="nt">"is_live"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"is_cancelled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"is_hidden"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"oco_order"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nt">"was_forced"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"original_amount"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"remaining_amount"</span><span class="p">:</span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
@@ -1949,6 +1960,11 @@ All Authenticated Endpoints use POST requests
               <td><strong>is_hidden</strong></td>
               <td>[bool]</td>
               <td>Is the order hidden?</td>
+            </tr>
+            <tr>
+              <td><strong>oco_order</strong></td>
+              <td>[integer]</td>
+              <td>If the order is an OCO order, the ID of the linked order. Otherwise, null</td>
             </tr>
             <tr>
               <td><strong>was_forced</strong></td>
@@ -3712,7 +3728,7 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <h3 id="authenticated-channels">Authenticated Channels</h3>
 
 <ul>
-<li><strong>Account Info:</strong> account specific private data (positions, orders, executed trades, balances)</li>
+<li><strong>Account Information:</strong> account specific private data (positions, orders, executed trades, balances)</li>
 </ul>
 
 <h3 id="how-to-connect">How to Connect</h3>
@@ -3832,10 +3848,6 @@ Rely on `CODE` only to handle `info` events.
 <p>If there is no new message in the channel for 5 seconds, Websocket server will send you an heartbeat message in this format.</p>
 
 <h3 id="snapshot">Snapshot</h3>
-
-<blockquote>
-<p><strong>Snapshot</strong></p>
-</blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="s2">"&lt;Chan Id&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="p">[</span><span class="s2">"&lt;Group of Update Messages&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="p">[</span><span class="s2">"&lt;Update Message&gt;"</span><span class="p">]</span><span class="w">
@@ -4095,6 +4107,8 @@ COUNT=0 means that you have to remove the price level from your book.
 </aside>
 
 <h3 id="raw-order-books">Raw Order Books</h3>
+
+<p>These are the most granular books.</p>
 <pre class="highlight javascript"><code><span class="nx">w</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"subscribe"</span><span class="p">,</span>
     <span class="s2">"channel"</span><span class="p">:</span> <span class="s2">"book"</span><span class="p">,</span>
@@ -4397,7 +4411,7 @@ much the price has moved over the last day.</p>
 
 <h2 id="authenticated-channels">Authenticated Channels</h2>
 
-<h3 id="account-info">Account Info</h3>
+<h3 id="account-info-channel">Account Info Channel</h3>
 <pre class="highlight javascript"><code><span class="kd">var</span>
     <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">),</span>
     <span class="nx">api_key</span> <span class="o">=</span> <span class="s1">'API_KEY'</span><span class="p">,</span>
@@ -4584,7 +4598,9 @@ your balances, your orders and your trades.</p>
 </tr>
 </tbody></table>
 
-<h4 id="order-snapshot">Order Snapshot</h4>
+<h4 id="order-snapshots">Order Snapshots</h4>
+
+<p><code class="prettyprint">os</code> and <code class="prettyprint">hos</code> indentify respectively <em>active</em> and <em>inactive</em> orders snapshots</p>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="mi">0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"os"</span><span class="p">,</span><span class="w">
@@ -4600,7 +4616,8 @@ your balances, your orders and your trades.</p>
          </span><span class="s2">"&lt;ORD_PRICE_AVG&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;ORD_CREATED_AT&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;ORD_NOTIFY&gt;"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"&lt;ORD_HIDDEN&gt;"</span><span class="w">
+         </span><span class="s2">"&lt;ORD_HIDDEN&gt;"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"&lt;ORD_OCO&gt;"</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="p">[</span><span class="w">
          </span><span class="s2">"..."</span><span class="w">
@@ -4672,6 +4689,11 @@ your balances, your orders and your trades.</p>
 <td>ORD_HIDDEN</td>
 <td>int</td>
 <td>1 if Hidden, 0 if not hidden</td>
+</tr>
+<tr>
+<td>ORD_OCO</td>
+<td>int</td>
+<td>ID of the linked order, 0 otherwise</td>
 </tr>
 </tbody></table>
 
