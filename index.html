@@ -4226,7 +4226,7 @@ such as price, size and time.</p>
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="p">[</span><span class="w">  
       </span><span class="p">[</span><span class="w">  
-         </span><span class="s2">"&lt;SEQ&gt;"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"&lt;SEQ&gt; OR &lt;ID&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;TIMESTAMP&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;PRICE&gt;"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"&lt;AMOUNT&gt;"</span><span class="w">
@@ -4240,7 +4240,18 @@ such as price, size and time.</p>
 </span><span class="err">//</span><span class="w"> </span><span class="err">updates</span><span class="w">
 </span><span class="p">[</span><span class="w">
    </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"te"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;SEQ&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;TIMESTAMP&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;PRICE&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;AMOUNT&gt;"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span><span class="p">[</span><span class="w">
+   </span><span class="s2">"&lt;CHANNEL_ID&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"tu"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;SEQ&gt;"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"&lt;ID&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;TIMESTAMP&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;PRICE&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"&lt;AMOUNT&gt;"</span><span class="w">
@@ -4249,7 +4260,8 @@ such as price, size and time.</p>
 
 <p><em>here is an example of a real trade</em></p>
 
-<p><code class="prettyprint">[ 5, &#39;1234-BTCUSD&#39;, 1443659698, 236.42, 0.49064538 ]</code></p>
+<p><code class="prettyprint">[ 5, &#39;te&#39;, &#39;1234-BTCUSD&#39;, 1443659698, 236.42, 0.49064538 ]</code>
+<code class="prettyprint">[ 5, &#39;tu&#39;, &#39;1234-BTCUSD&#39;, 15254529, 1443659698, 236.42, 0.49064538 ]</code></p>
 
 <p><strong>Fields</strong></p>
 
@@ -4264,6 +4276,11 @@ such as price, size and time.</p>
 <td>SEQ</td>
 <td>string</td>
 <td>Trade sequence id</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>int</td>
+<td>Trade database id</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
@@ -4284,7 +4301,8 @@ such as price, size and time.</p>
 
 <aside class="notice">
 <strong>NOTE</strong>
-SEQ is different from canonical TRADE_ID. Websocket server uses SEQ strings to push trades with low latency. We may add in the future a delayed message to help mapping between SEQ and TRADE_ID.
+SEQ is different from canonical ID. Websocket server uses SEQ strings to push trades with low latency. 
+After a &ldquo;te&rdquo; message you receive shortly a &ldquo;tu&rdquo; message that contains the real trade &ldquo;ID&rdquo;.
 </aside>
 
 <h3 id="ticker">Ticker</h3>
@@ -4733,7 +4751,7 @@ your balances, your orders and your trades.</p>
 <tr>
 <td>TRD_ID</td>
 <td>int</td>
-<td>Trade id</td>
+<td>Trade database id</td>
 </tr>
 <tr>
 <td>TRD_PAIR</td>
@@ -4797,7 +4815,8 @@ your balances, your orders and your trades.</p>
       </span><span class="s2">"&lt;ORD_PRICE_AVG&gt;"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"&lt;ORD_CREATED_AT&gt;"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"&lt;ORD_NOTIFY&gt;"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"&lt;ORD_HIDDEN&gt;"</span><span class="w">
+      </span><span class="s2">"&lt;ORD_HIDDEN&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"&lt;ORD_OCO&gt;"</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
