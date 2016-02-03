@@ -3842,6 +3842,80 @@ greater or equal to the amount of the position and the margin funding used.</p>
             </tbody>
           </table>
 
+<h3 id="key-permissions">Key Permissions</h3>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"request"</span><span class="p">:</span> <span class="s2">"/v1/key_info"</span><span class="p">,</span>
+  <span class="s2">"nonce"</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span>
+<span class="p">};</span>
+<span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(</span><span class="s1">'base64'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s2">"sha384"</span><span class="p">,</span> <span class="nx">api_secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s2">"/key_info"</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'X-BFX-PAYLOAD'</span><span class="p">:</span> <span class="nx">payload</span><span class="p">,</span>
+    <span class="s1">'X-BFX-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">baseRequest</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Response</strong></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"account"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"read"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"write"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"history"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"read"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"write"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"orders"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"read"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"write"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"positions"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"read"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"write"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"funding"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"read"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"write"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"wallets"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"read"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"write"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"withdraw"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"read"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="nt">"write"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><strong>Endpoint</strong></p>
+
+<p><code class="prettyprint">/key_info</code></p>
+
+<p><strong>Description</strong></p>
+
+<p>Check the permissions of the key being used to generate this request</p>
+
+<p><strong>Request Details</strong></p>
+
+<p>No additional params</p>
+
+<p><strong>Response Details</strong></p>
+
+<p>A JSON object with a key for each of the possible permissions whose value is another JSON object with both a read and write key which has a value of true or false</p>
+
           <h1 id="websocket">Websocket</h1>
 
 <h2 id="general">General</h2>
