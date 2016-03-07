@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["javascript","go"]);
+          setupLanguages(["javascript","go","ruby"]);
         });
       </script>
   </head>
@@ -30,6 +30,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="go">go</a>
+              <a href="#" data-language-name="ruby">ruby</a>
         </div>
       <div id="toc">
       </div>
@@ -62,14 +63,13 @@ allow people to potentially recreate the entire platform on their own.</p>
 <h3 id="node-js">Node.js</h3>
 
 <ul>
-<li>Reference implementation: <a href="https://github.com/bitfinexcom/bitfinex-api-node">bitfinexcom/bitfinex-api-node</a></li>
-<li>Library: Coming soon</li>
+<li>Library: <a href="https://github.com/bitfinexcom/bitfinex-api-node">bitfinexcom/bitfinex-api-node</a></li>
 </ul>
 
 <h3 id="ruby">Ruby</h3>
 
 <ul>
-<li>Library: Coming soon</li>
+<li>Library: <a href="https://github.com/bitfinexcom/bitfinex-api-rb">bitfinexcom/bitfinex-api-rb</a></li>
 </ul>
 
 <h2 id="api-access">API Access</h2>
@@ -262,6 +262,16 @@ using <a href="https://www.bitfinex.com/account/api">this page</a></p>
     </span><span class="s">"nonce"</span><span class="o">:</span><span class="x">   </span><span class="n">fmt</span><span class="o">.</span><span class="n">Sprintf</span><span class="p">(</span><span class="s">"%v"</span><span class="p">,</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">Unix</span><span class="p">()</span><span class="o">*</span><span class="m">10000</span><span class="p">),</span><span class="x">
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
+<pre class="highlight ruby"><code><span class="c1"># add in your Gemfile</span>
+<span class="n">gem</span> <span class="s1">'bitfinex-rb'</span> 
+</code></pre>
+<pre class="highlight ruby"><code><span class="no">Bitfinex</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">config</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
+  <span class="n">conf</span><span class="p">.</span><span class="nf">secret</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BFX_API_SECRET"</span><span class="p">]</span>
+  <span class="n">conf</span><span class="p">.</span><span class="nf">api_key</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BFX_API_KEY"</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">client</span> <span class="o">=</span> <span class="no">Bitfinex</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">new</span>
+</code></pre>
 
 <p>Authentication is done using an API key and a secret. To generate this pair,
 go to the <a href="https://www.bitfinex.com/account/api">API Access</a> page.
@@ -411,6 +421,8 @@ All Public Endpoints use GET requests
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">tick</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">ticker</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"mid"</span><span class="p">:</span><span class="s2">"244.755"</span><span class="p">,</span><span class="w">
@@ -491,6 +503,8 @@ as well as high, low and volume of the last 24 hours.</p>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">stats</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">stats</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"period"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -547,6 +561,8 @@ An array of the following:</p>
 <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code> <span class="n">funding_book</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">funding_book</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -695,6 +711,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">orderbook</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">orderbook</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"bids"</span><span class="p">:[{</span><span class="w">
@@ -820,6 +838,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">trades</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">trades</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1444266681</span><span class="p">,</span><span class="w">
@@ -930,6 +950,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">lends</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">lends</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"9.8998"</span><span class="p">,</span><span class="w">
@@ -1024,6 +1046,8 @@ An array of the following:</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">symbols</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">symbols</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[</span><span class="s2">"btcusd"</span><span class="p">,</span><span class="s2">"ltcusd"</span><span class="p">,</span><span class="s2">"ltcbtc"</span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1049,6 +1073,8 @@ An array of the following:</p>
 <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">symbols_details</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">symbols_details</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">reponse</span><span class="w">
 </span><span class="p">[{</span><span class="w">
@@ -1173,6 +1199,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">client</span><span class="p">.</span><span class="nf">account_info</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"maker_fees"</span><span class="p">:</span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
@@ -1256,12 +1284,14 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">new_address</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">deposit</span><span class="p">(</span><span class="s2">"bitcoin"</span><span class="p">,</span> <span class="s2">"exchange"</span><span class="p">)</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"result"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"method"</span><span class="p">:</span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"address"</span><span class="p">:</span><span class="s2">"3FdY9coNq47MLiKhG2FLtKzdaXS3hZpSo4"</span><span class="w">
+  </span><span class="nt">"address"</span><span class="p">:</span><span class="s2">"1A2wyHKJ4KWEoahDHVxwQy3kdd6g1qiSYV"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1367,6 +1397,8 @@ All Authenticated Endpoints use POST requests
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">client</span><span class="p">.</span><span class="nf">new_order</span><span class="p">(</span><span class="s2">"usdbtc"</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">"market"</span><span class="p">,</span> <span class="s2">"sell"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> 
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -1551,6 +1583,8 @@ All Authenticated Endpoints use POST requests
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">multiple_orders</span><span class="p">([{</span><span class="ss">symbol: </span><span class="s2">"btcusd"</span><span class="p">,</span> <span class="ss">amount: </span><span class="mi">10</span><span class="p">,</span> <span class="ss">price: </span><span class="mi">0</span><span class="p">,</span> <span class="ss">exchange: </span><span class="s2">"bitfinex"</span><span class="p">,</span> <span class="ss">side: </span><span class="s2">"buy"</span><span class="p">,</span> <span class="ss">type: </span><span class="s2">"market"</span><span class="p">}])</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"order_ids"</span><span class="p">:[{</span><span class="w">
@@ -1685,6 +1719,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">cancel_orders</span><span class="p">(</span><span class="mi">448364249</span><span class="p">)</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">446915287</span><span class="p">,</span><span class="w">
@@ -1758,6 +1794,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">cancel_orders</span><span class="p">([</span><span class="mi">448402101</span><span class="p">,</span> <span class="mi">448402099</span><span class="p">])</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="nt">"result"</span><span class="p">:</span><span class="s2">"Orders cancelled"</span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1814,6 +1852,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">cancel_orders</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="nt">"result"</span><span class="p">:</span><span class="s2">"All orders cancelled"</span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1860,6 +1900,8 @@ All Authenticated Endpoints use POST requests
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">})</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">replace_order</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="s2">"usdbtc"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"market"</span><span class="p">,</span> <span class="s2">"buy"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -1985,6 +2027,8 @@ All Authenticated Endpoints use POST requests
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">order_status</span><span class="p">(</span><span class="mi">448411153</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -2146,6 +2190,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">orders</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">448411365</span><span class="p">,</span><span class="w">
@@ -2200,6 +2246,8 @@ All Authenticated Endpoints use POST requests
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">positions</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">943715</span><span class="p">,</span><span class="w">
@@ -2245,6 +2293,8 @@ All Authenticated Endpoints use POST requests
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">client</span><span class="p">.</span><span class="nf">claim_position</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -2328,6 +2378,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">history</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
@@ -2449,6 +2501,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">reponse</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">movements</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
@@ -2585,6 +2639,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">mytrades</span>
 </code></pre>
 
 <blockquote>
@@ -2747,6 +2803,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">new_offer</span><span class="p">(</span><span class="s2">"btc"</span><span class="p">,</span> <span class="mi">10</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="s2">"lend"</span><span class="p">)</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13800585</span><span class="p">,</span><span class="w">
@@ -2853,6 +2911,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">cancel_offer</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13800585</span><span class="p">,</span><span class="w">
@@ -2921,6 +2981,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">offer_status</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -3057,6 +3119,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">credits</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13800719</span><span class="p">,</span><span class="w">
@@ -3104,6 +3168,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">offers</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
@@ -3153,6 +3219,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">taken_funds</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11576737</span><span class="p">,</span><span class="w">
@@ -3198,6 +3266,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">unused_taken_funds</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11576737</span><span class="p">,</span><span class="w">
@@ -3242,6 +3312,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">total_taken_funds</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
@@ -3303,6 +3375,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">close_funding</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -3368,6 +3442,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">balances</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
@@ -3467,6 +3543,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">margin_infos</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
@@ -3586,6 +3664,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">transfer</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s2">"exchange"</span><span class="p">,</span> <span class="s2">"deposit"</span><span class="p">)</span>
+</code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
@@ -3684,6 +3764,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">withdraw</span><span class="p">(</span><span class="s2">"bitcoin"</span><span class="p">,</span><span class="s2">"deposit"</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span> <span class="ss">address: </span><span class="s2">"1DKwqRhDmVyHJDL4FUYpDmQMYA3Rsxtvur"</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">[{</span><span class="w">
@@ -3863,6 +3945,8 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <span class="nx">baseRequest</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">key_info</span>
 </code></pre>
 
 <blockquote>
@@ -5223,6 +5307,7 @@ your balances, your orders and your trades.</p>
           <div class="lang-selector">
                 <a href="#" data-language-name="javascript">javascript</a>
                 <a href="#" data-language-name="go">go</a>
+                <a href="#" data-language-name="ruby">ruby</a>
           </div>
       </div>
     </div>
