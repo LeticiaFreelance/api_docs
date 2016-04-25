@@ -265,13 +265,17 @@ using <a href="https://www.bitfinex.com/account/api">this page</a></p>
 <pre class="highlight ruby"><code><span class="c1"># add in your Gemfile</span>
 <span class="n">gem</span> <span class="s1">'bitfinex-rb'</span> 
 </code></pre>
-<pre class="highlight ruby"><code><span class="no">Bitfinex</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">config</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
+<pre class="highlight ruby"><code><span class="no">Bitfinex</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
   <span class="n">conf</span><span class="p">.</span><span class="nf">secret</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BFX_API_SECRET"</span><span class="p">]</span>
   <span class="n">conf</span><span class="p">.</span><span class="nf">api_key</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s2">"BFX_API_KEY"</span><span class="p">]</span>
 <span class="k">end</span>
 </code></pre>
 <pre class="highlight ruby"><code><span class="n">client</span> <span class="o">=</span> <span class="no">Bitfinex</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">new</span>
 </code></pre>
+<pre class="highlight go"><code><span class="k">import</span><span class="x"> </span><span class="s">"github.com/bitfinexcom/bitfinex-api-go"</span><span class="x">
+
+</span><span class="n">client</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">bitfinex</span><span class="o">.</span><span class="n">NewClient</span><span class="p">()</span><span class="o">.</span><span class="n">Auth</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">,</span><span class="x"> </span><span class="n">API_SECRET</span><span class="p">)</span><span class="x">
+</span></code></pre>
 
 <p>Authentication is done using an API key and a secret. To generate this pair,
 go to the <a href="https://www.bitfinex.com/account/api">API Access</a> page.
@@ -1888,7 +1892,8 @@ All Authenticated Endpoints use POST requests
   <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"0.02"</span><span class="p">,</span>
   <span class="s2">"exchange"</span><span class="p">:</span> <span class="s2">"bitfinex"</span><span class="p">,</span>
   <span class="s2">"side"</span><span class="p">:</span> <span class="s2">"buy"</span><span class="p">,</span>
-  <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"exchange limit"</span>
+  <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"exchange limit"</span><span class="p">,</span>
+  <span class="s2">"use_remaining"</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">};</span>
 <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(</span><span class="s1">'base64'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s2">"sha384"</span><span class="p">,</span> <span class="nx">api_secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">);</span>
@@ -1986,6 +1991,11 @@ All Authenticated Endpoints use POST requests
               <td><strong>is_hidden</strong></td>
               <td>[bool]</td>
               <td>true if the order should be hidden. Default is false.</td>
+            </tr>
+            <tr>
+              <td><strong>use_remaining</strong></td>
+              <td>[bool]</td>
+              <td>True if the new order should use the remaining amount of the original order. Default is false</td>
             </tr>
             </tbody>
             </table>
@@ -2736,16 +2746,6 @@ greater or equal to the amount of the position and the margin funding used.</p>
             <td></td>
           </tr>
           <tr>
-            <td><strong>timestamp</strong></td>
-            <td>[time]</td>
-            <td>return only trades after or at the time specified here</td>
-          </tr>
-          <tr>
-            <td><strong>until</strong></td>
-            <td>[time]</td>
-            <td>return only trades before or a the time specified here</td>
-          </tr>
-          <tr>
             <td><strong>exchange</strong></td>
             <td>[string]</td>
             <td></td>
@@ -2886,10 +2886,56 @@ greater or equal to the amount of the position and the margin funding used.</p>
             <tbody>
 
             <tr>
-              <td><strong>offer_id</strong></td>
+              <td><strong>id</strong></td>
               <td>[int]</td>
               <td>A randomly generated ID for the offer and the information given by /offer/status</td>
             </tr>
+            <tr>
+              <td><strong>currency</strong></td>
+              <td>[string]</td>
+              <td>The name of the currency.</td>
+            </tr>
+            <tr>
+              <td><strong>rate</strong></td>
+              <td>[decimal]</td>
+              <td>Rate to lend or borrow at. <b>In percentage per 365 days</b>. (Set to 0 for FRR).</td>
+            </tr>
+            <tr>
+              <td><strong>period</strong></td>
+              <td>[integer]</td>
+              <td>Number of days of the funding contract (in days)</td>
+            </tr>
+            <tr>
+              <td><strong>direction</strong></td>
+              <td>[string]</td>
+              <td>Either &ldquo;lend&rdquo; or &ldquo;loan&rdquo;.</td>
+            </tr>
+            <tr>
+              <td><strong>is_live</strong></td>
+              <td>[bool]</td>
+              <td>Could the offer still be filled?</td>
+            </tr>
+            <tr>
+              <td><strong>is_cancelled</strong></td>
+              <td>[bool]</td>
+              <td>Has the offer been cancelled?</td>
+            </tr>
+            <tr>
+              <td><strong>executed_amount</strong></td>
+              <td>[decimal]</td>
+              <td>How much of the offer has been executed so far in its history?</td>
+            </tr>
+            <tr>
+              <td><strong>remaining_amount</strong></td>
+              <td>[decimal]</td>
+              <td>How much is still remaining to be submitted?</td>
+            </tr>
+            <tr>
+              <td><strong>original_amount</strong></td>
+              <td>[decimal]</td>
+              <td>What was the offer originally submitted for?</td>
+            </tr>
+
             </tbody>
             </table>
 
@@ -4011,6 +4057,20 @@ greater or equal to the amount of the position and the margin funding used.</p>
 
 <p>Bitfinex Websocket API current version is 1.0</p>
 
+<h3 id="changelog">Changelog</h3>
+
+<h4 id="v1-1">v1.1</h4>
+
+<ul>
+<li>related blog post http://blog.bitfinex.com/post/143259611674/websocket-api-v11-update</li>
+<li>priv channel (trade snapshot <code class="prettyprint">ts</code>): include last 30 trades from each pair, as opposed to the last 30 trades total in v1.0.</li>
+<li>priv channel: publish a full snapshot after a trading engine resync message</li>
+<li>performance: noticeable latency reduction</li>
+<li>bugfixes</li>
+</ul>
+
+<h4 id="v1-0-initial-release">v1.0 Initial Release</h4>
+
 <h3 id="ssl-websocket-connection">SSL Websocket Connection</h3>
 
 <p>URI: <code class="prettyprint">wss://api2.bitfinex.com:3000/ws</code></p>
@@ -4654,7 +4714,7 @@ such as price, size and time.</p>
 <td>Price at which the trade was executed</td>
 </tr>
 <tr>
-<td>AMOUNT</td>
+<td>±AMOUNT</td>
 <td>float</td>
 <td>How much was bought (positive) or sold (negative).<br>The order that causes the trade determines if it is a buy or a sell.</td>
 </tr>
