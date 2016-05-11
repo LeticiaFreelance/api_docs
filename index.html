@@ -4147,8 +4147,13 @@ greater or equal to the amount of the position and the margin funding used.</p>
 <h4 id="v1-2-dev">v1.2 (dev)</h4>
 
 <ul>
-<li>priv channel: <code class="prettyprint">ts</code> to <code class="prettyprint">hts</code></li>
-<li>priv channel: client order ids in <code class="prettyprint">os</code>, <code class="prettyprint">on</code>, <code class="prettyprint">ou</code>, <code class="prettyprint">oc</code></li>
+<li>priv channel: rename <code class="prettyprint">ts</code> tag to <code class="prettyprint">hts</code></li>
+<li>priv channel: add clientOrderId and groupId to <code class="prettyprint">os</code>, <code class="prettyprint">on</code>, <code class="prettyprint">ou</code>, <code class="prettyprint">oc</code> subchannels. <code class="prettyprint">[&quot;&lt;ORD_ID&gt;&quot;,&quot;&lt;ORD_PAIR&gt;&quot;,...]</code> becomes <code class="prettyprint">[&quot;&lt;ORD_ID&gt;&quot;,&quot;&lt;ORD_GROUP_ID&gt;&quot;,&quot;&lt;ORD_CLI_ID&gt;&quot;,&quot;&lt;ORD_PAIR&gt;&quot;,...]</code></li>
+<li>priv channel: <code class="prettyprint">calc</code> option: tradable balance, usd equivalent balance, unrealized P&amp;L, swap, &hellip;</li>
+<li>priv channel: notification subchannel <code class="prettyprint">n</code></li>
+<li>priv channel: fixed heartbeat frequency (1 every second)</li>
+<li>book: improved book updates after trades </li>
+<li>general: performance improvements</li>
 </ul>
 
 <h4 id="v1-1">v1.1</h4>
