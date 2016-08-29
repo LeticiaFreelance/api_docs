@@ -720,18 +720,14 @@ An array of the following:</p>
 <pre class="highlight json"><code><span class="err">//</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"bids"</span><span class="p">:[{</span><span class="w">
-    </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"9.1287"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"5000.0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"period"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1444257541.0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"frr"</span><span class="p">:</span><span class="s2">"No"</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="s2">"574.61"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"0.1439327"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1472506127.0"</span><span class="w">
   </span><span class="p">}],</span><span class="w">
   </span><span class="nt">"asks"</span><span class="p">:[{</span><span class="w">
-    </span><span class="nt">"rate"</span><span class="p">:</span><span class="s2">"8.3695"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"407.5"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"period"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1444260343.0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"frr"</span><span class="p">:</span><span class="s2">"No"</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="s2">"574.62"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"19.1334"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1472506126.0"</span><span class="w">
   </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -4140,7 +4136,7 @@ greater or equal to the amount of the position and the margin funding used.</p>
 
 <h3 id="current-version">Current Version</h3>
 
-<p>Bitfinex Websocket API current version is 1.0</p>
+<p>Bitfinex Websocket API current version is 1.1</p>
 
 <h3 id="changelog">Changelog</h3>
 
@@ -4148,12 +4144,13 @@ greater or equal to the amount of the position and the margin funding used.</p>
 
 <ul>
 <li>priv channel: rename <code class="prettyprint">ts</code> tag to <code class="prettyprint">hts</code></li>
-<li>priv channel: add clientOrderId and groupId to <code class="prettyprint">os</code>, <code class="prettyprint">on</code>, <code class="prettyprint">ou</code>, <code class="prettyprint">oc</code> subchannels. <code class="prettyprint">[&quot;&lt;ORD_ID&gt;&quot;,&quot;&lt;ORD_PAIR&gt;&quot;,...]</code> becomes <code class="prettyprint">[&quot;&lt;ORD_ID&gt;&quot;,&quot;&lt;ORD_GROUP_ID&gt;&quot;,&quot;&lt;ORD_CLI_ID&gt;&quot;,&quot;&lt;ORD_PAIR&gt;&quot;,...]</code></li>
+<li>priv channel: add clientOrderId, groupId, trailing price and flags to <code class="prettyprint">os</code>, <code class="prettyprint">on</code>, <code class="prettyprint">ou</code>, <code class="prettyprint">oc</code> subchannels</li>
 <li>priv channel: <code class="prettyprint">calc</code> option: tradable balance, usd equivalent balance, unrealized P&amp;L, swap, &hellip;</li>
 <li>priv channel: notification subchannel <code class="prettyprint">n</code></li>
 <li>priv channel: fixed heartbeat frequency (1 every second)</li>
 <li>book: improved book updates after trades </li>
 <li>general: performance improvements</li>
+<li>general: support for decimal numbers format (string or float)</li>
 </ul>
 
 <h4 id="v1-1">v1.1</h4>
