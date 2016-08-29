@@ -21,7 +21,7 @@ The following open source projects are works in progress. We will be continually
 
 ## API Access
 In order to access the parts of the API which require authentication, you must generate an API key and an API secret
-using [this page](https://www.bitfinex.com/account/api)
+using [this page](https://www.bitfinex.com/api)
 
 You can generate as many API keys as you would like, and each of those keys can be customized in a few ways.
 
