@@ -463,18 +463,14 @@ orderbook = client.orderbook
 // response
 {
   "bids":[{
-    "rate":"9.1287",
-    "amount":"5000.0",
-    "period":30,
-    "timestamp":"1444257541.0",
-    "frr":"No"
+    "price":"574.61",
+    "amount":"0.1439327",
+    "timestamp":"1472506127.0"
   }],
   "asks":[{
-    "rate":"8.3695",
-    "amount":"407.5",
-    "period":2,
-    "timestamp":"1444260343.0",
-    "frr":"No"
+    "price":"574.62",
+    "amount":"19.1334",
+    "timestamp":"1472506126.0"
   }]
 }
 ```
