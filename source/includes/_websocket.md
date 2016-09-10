@@ -422,6 +422,11 @@ w.send(JSON.stringify({
 ]
 ```
 
+<aside class="notice">
+<strong>NOTE</strong>
+PRICE=0 means that you have to remove the order from your book. 
+</aside>
+
 **Fields**
 
 Fields | Type | Description
