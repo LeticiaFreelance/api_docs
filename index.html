@@ -2606,6 +2606,7 @@ greater or equal to the amount of the position and the margin funding used.</p>
   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"WITHDRAWAL"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">".01"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"3QXYWgRGX2BPYBpUDBssGbeWEa5zq6snBZ, offchain transfer "</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address"</span><span class="p">:</span><span class="s2">"3QXYWgRGX2BPYBpUDBssGbeWEa5zq6snBZ"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="s2">"1443833327.0"</span><span class="w">
 </span><span class="p">}]</span><span class="w">
@@ -2697,6 +2698,11 @@ greater or equal to the amount of the position and the margin funding used.</p>
             <td><strong>description</strong></td>
             <td>[string]</td>
             <td>Description of the movement (txid, destination address,,,,)</td>
+          </tr>
+          <tr>
+            <td><strong>address</strong></td>
+            <td>[string]</td>
+            <td>Deposit address used or withdrawal destination address</td>
           </tr>
           <tr>
             <td><strong>status</strong></td>
@@ -4672,6 +4678,11 @@ COUNT=0 means that you have to remove the price level from your book.
    </span><span class="s2">"&lt;AMOUNT&gt;"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
+
+<aside class="notice">
+<strong>NOTE</strong>
+PRICE=0 means that you have to remove the order from your book. 
+</aside>
 
 <p><strong>Fields</strong></p>
 
