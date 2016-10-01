@@ -554,7 +554,8 @@ w.send(JSON.stringify({
 {
    "event":"subscribed",
    "channel":"ticker",
-   "chanId":"<CHANNEL_ID>"
+   "chanId":"<CHANNEL_ID>",
+   "pair":"BTCUSD"
 }
 
 // snapshot
