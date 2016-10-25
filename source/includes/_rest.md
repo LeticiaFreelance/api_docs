@@ -3084,11 +3084,6 @@ Get the status of an offer. Is it active? Was it cancelled? To what extent has i
               <td>Either "lend" or "loan".</td>
             </tr>
             <tr>
-              <td><strong>type</strong></td>
-              <td>[string]</td>
-              <td>Either "market" / "limit" / "stop" / "trailing-stop".</td>
-            </tr>
-            <tr>
               <td><strong>timestamp</strong></td>
               <td>[time]</td>
               <td>The timestamp the offer was submitted.</td>
